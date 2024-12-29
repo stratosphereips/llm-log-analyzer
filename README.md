@@ -1,15 +1,15 @@
-# Awesome Code Template
+# LLM Log Analyzer
 
-This repository is a template with basic elements that every repository at Stratosphere should follow.
+A simple python program to read a text file (designed for log files), and a prompt, and ask a local ollama server to analyze it.
 
 ## Features
 
-Write about what makes your [tool|code|data|repo] special.
+- Contact ollama
 
 ## Usage
 
-Write about how others can use your [tool|code|data|repo].
+`python ./log-analyzer.py -f test-auth.log -c prompt.yaml`
 
 # About
 
-This [tool|code|data|repo] was developed at the Stratosphere Laboratory at the Czech Technical University in Prague.
+This tool was developed at the Stratosphere Laboratory at the Czech Technical University in Prague.
