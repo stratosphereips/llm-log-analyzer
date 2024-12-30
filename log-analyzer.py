@@ -13,7 +13,8 @@ logging.basicConfig(
 )
 
 def main():
-    logging.info("Starting main function")
+    logging.info("# Starting LLM log analyzer")
+    print('Starting the LLM log analyzer')
 
     parser = argparse.ArgumentParser(
         description=(
@@ -87,11 +88,12 @@ def main():
         "stream": False
     }
 
+    print(f'-> Sending POST request to {OLLAMA_URL}')
     logging.info("Sending POST request to: %s", OLLAMA_URL)
     logging.debug("POST payload:\n%s", data)
 
     try:
-        response = requests.post(OLLAMA_URL, json=data, timeout=60)
+        response = requests.post(OLLAMA_URL, json=data, timeout=300)
         logging.debug("Response status: %d", response.status_code)
         logging.debug("Response body:\n%s", response.text)
 
@@ -122,4 +124,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
