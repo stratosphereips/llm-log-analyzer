@@ -16,8 +16,8 @@ logging.basicConfig(
     datefmt='%Y-%m-%d %H:%M:%S'
 )
 
-def call_ollama(full_prompt, model, port):
-    OLLAMA_URL = f"http://localhost:{port}/api/generate"
+def call_ollama(full_prompt, model, ip, port):
+    OLLAMA_URL = f"http://{ip}:{port}/api/generate"
     data = {
         "model": model,
         "prompt": full_prompt,
@@ -83,6 +83,11 @@ def main():
         help='Path to the YAML config file'
     )
     parser.add_argument(
+        '-ip',
+        default='localhost',
+        help='IP address of the Ollama server (default: localhost)'
+    )
+    parser.add_argument(
         '-p',
         default='11434',
         help='Ollama server port (default: 11434)'
@@ -117,8 +122,8 @@ def main():
     args = parser.parse_args()
 
     logging.info(
-        "Parsed arguments: file=%s, config=%s, port=%s, model=%s, lines=%d, server=%s, openai_model=%s, output=%s",
-        args.f, args.c, args.p, args.m, args.n, args.s, args.om, args.o
+        "Parsed arguments: file=%s, config=%s, ip=%s, port=%s, model=%s, lines=%d, server=%s, openai_model=%s, output=%s",
+        args.f, args.c, args.ip, args.p, args.m, args.n, args.s, args.om, args.o
     )
 
     # Read the last N lines from the file
@@ -149,7 +154,7 @@ def main():
     if args.s == 'ollama':
         print(f'-> Sending POST request to Ollama')
         logging.info("Sending POST request to Ollama")
-        response = call_ollama(full_prompt, args.m, args.p)
+        response = call_ollama(full_prompt, args.m, args.ip, args.p)
     else:
         print(f'-> Sending POST request to OpenAI')
         logging.info("Sending POST request to OpenAI")
