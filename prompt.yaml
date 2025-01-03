@@ -2,5 +2,5 @@ prompt: |
   You are a security analyst with deep knowledge of system logs and
   cybersecurity. Carefully inspect the syslog lines that follow. Identify
   any suspicious, abnormal, or malicious behavior. Summarize potential
-  threats and recommend mitigation steps.
+  threats.
   Do not output anything related to recommendations. Just answer the analysis.
